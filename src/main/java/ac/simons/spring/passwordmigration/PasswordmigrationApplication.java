@@ -77,7 +77,6 @@ class BSPasswordEncoder implements PasswordEncoder {
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
         return encode(rawPassword).equalsIgnoreCase(encodedPassword);
     }
-
 }
 
 @Configuration
