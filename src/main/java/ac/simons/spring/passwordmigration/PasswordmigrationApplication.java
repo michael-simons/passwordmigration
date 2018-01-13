@@ -101,7 +101,6 @@ class SecurityConfiguration {
         // And that is the actual encoder for the above id. I need this on a variable
         // later on.
         final Pbkdf2PasswordEncoder defaultEncoder = new Pbkdf2PasswordEncoder();
-
         // Create the chain of password encoders
         final Map<String, PasswordEncoder> encoders
             = new HashMap<>();
@@ -221,6 +220,9 @@ class SecurityConfiguration {
                 final String rehashedPassword = passwordEncoder.encode(plainTextPassword);
 
                 LOG.info("Now is the time to store new password hash {} for user {}", rehashedPassword, authentication.getName());
+
+                // Now clear the credentials
+                ((UsernamePasswordAuthenticationToken)authentication).eraseCredentials();
             }
         };
     }
